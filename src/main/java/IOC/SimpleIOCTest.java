@@ -11,5 +11,6 @@ public class SimpleIOCTest {
         System.out.println(wheel.getSpecification());
         Car car = (Car) bf.getBean("car");
         System.out.println(car);
+
     }
 }
