@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.thunisoft.zhitu</groupId>
+	<artifactId>zhitu</artifactId>
+	<version>3.3.1</version>
+	<packaging>jar</packaging>
+
+	<name>zhitu</name>
+	<description>Artery6 Project</description>
+
+	<properties>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.thunisoft.artery</groupId>
+			<artifactId>artery-code-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.thunisoft.artery</groupId>
+			<artifactId>artery-login-starter</artifactId>
+		</dependency>
+<!-- 		<dependency>
+			<groupId>com.thunisoft.artery</groupId>
+			<artifactId>artery-organ-starter</artifactId>
+		</dependency> -->
+		<dependency>
+			<groupId>com.thunisoft.artery</groupId>
+			<artifactId>artery-starter</artifactId>
+		</dependency>
+		<!-- uim -->
+		<dependency>
+			<groupId>com.thunisoft.artery</groupId>
+			<artifactId>artery-uim-sdk-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.thunisoft.arterybase</groupId>
+			<artifactId>ArteryBase</artifactId>
+		</dependency>
+		<!-- Greenplum -->
+		<dependency>
+			<groupId>com.pivotal</groupId>
+			<artifactId>greenplum</artifactId>
+			<version>4.x</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- POIjar包 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.10-FINAL</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.10-FINAL</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jcommon</artifactId>
+            <version>1.0.23</version>
+        </dependency>
+		<dependency>
+		    <groupId>jfree</groupId>
+		    <artifactId>jfreechart</artifactId>
+		    <version>1.0.13</version>
+		</dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib  -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+		<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.thunisoft</groupId>
+    		<artifactId>thunisoft-logback</artifactId>
+    		<version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thunisoft</groupId>
+    		<artifactId>thunisoft-log4jdbc-log4j2</artifactId>
+    		<version>1.17.1-SNAPSHOT</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
+		<dependency>
+		    <groupId>com.thoughtworks.xstream</groupId>
+		    <artifactId>xstream</artifactId>
+		    <version>1.4.10</version>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.thunisoft.artery</groupId>
+				<artifactId>artery-parent</artifactId>
+				<version>6.0.27-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies> 
+	</dependencyManagement>
+	<build>
+		 <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>                     
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+		<plugins>
+			 <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.thunisoft.zhitu.ZhituApplication</mainClass>
+				</configuration>
+		 		<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			   <groupId>org.apache.maven.plugins</groupId>
+			   <artifactId>maven-surefire-plugin</artifactId>
+			   <configuration>
+			      <!-- 不指定单元测试 -->
+			      <skipTests>true</skipTests>
+			   </configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
